@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoraggio Sistema Fotovoltaico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Monitoraggio Sistema Fotovoltaico</h1>        
+        <div class="section">
+            <div class="section-header">Fotovoltaico</div>
+
+            <div class="energy-section">
+                <div class="icon-box" id="solar-box">
+                    <h4 class="mini-title">Tensione pannelli</h4>
+                    <i class="fas fa-solar-panel icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="solar">0 W</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="current-box">
+                    <h4 class="mini-title">Corrente elettrica</h4>
+                    <i class="fas fa-plug icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="current">0 A</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="power-box">
+                    <h4 class="mini-title">Potenza generata</h4>
+                    <i class="fas fa-bolt icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="power">0 W</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Meteo -->
+        <div class="section">
+            <div class="section-header">Meteo</div>
+            <div class="weather-section">
+                <div class="icon-box" id="wind-box">
+                    <h4 class="mini-title">Velocità del vento</h4>
+                    <i class="fas fa-wind icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="wind">0 km/h</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="wind-direction-box">
+                    <h4 class="mini-title">Direzione del vento</h4>
+                    <i class="fas fa-compass icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="wind-direction">Nord</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="temperature-box">
+                    <h4 class="mini-title">Temperatura</h4>
+                    <i class="fas fa-temperature-high icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="temperature">0°C</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Stazione -->
+        <div class="section">
+            <div class="section-header">Microcontrollore</div>
+            
+            <div class="station-section">
+                <div class="icon-box" id="water-box">
+                    <h4 class="mini-title">Contenuto Serbatoio</h4>
+                    <i class="fas fa-tint icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="water">0 L</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="battery-station-box">
+                    
+                    <h4 class="mini-title">Livello batteria</h4>
+                    <i class="fas fa-battery-full icon" id="battery-icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="battery-station">0%</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="controller-temp-box">
+                    
+                    <h4 class="mini-title">Temperatura Controllore</h4>
+                    <i class="fas fa-microchip icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="controller-temp">0°C</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
