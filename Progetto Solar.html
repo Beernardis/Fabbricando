@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoraggio Sistema Fotovoltaico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* RESET BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #0D47A1, #1976D2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .info {
+            font-size: 1.3rem;
+            color: #ddd;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1 1 30%;
+            min-width: 280px;
+            max-width: 380px;
+        }
+
+        .section-header {
+            font-size: 2rem;
+            color: #1976D2;
+            margin-bottom: 15px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .energy-section, .weather-section, .station-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .icon-box {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+            text-align: left;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .text-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .mini-title {
+            font-size: 1.2rem; /* Mini titolo */
+            font-weight: 600;
+            color: #1976D2;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+
+        .value {
+            font-size: 2.4rem;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #1976D2;
+            white-space: nowrap;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .icon {
+            font-size: 4rem;
+            color: #1976D2;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-header {
+                font-size: 1.8rem;
+            }
+
+            .icon {
+                font-size: 3rem;
+            }
+
+            .value {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Monitoraggio Sistema Fotovoltaico</h1>        
+        <div class="section">
+            <div class="section-header">Fotovoltaico</div>
+
+            <div class="energy-section">
+                <div class="icon-box" id="solar-box">
+                    <h4 class="mini-title">Tensione pannelli</h4>
+                    <i class="fas fa-solar-panel icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="solar">0 W</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="current-box">
+                    <h4 class="mini-title">Corrente elettrica</h4>
+                    <i class="fas fa-plug icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="current">0 A</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="power-box">
+                    <h4 class="mini-title">Potenza generata</h4>
+                    <i class="fas fa-bolt icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="power">0 W</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Meteo -->
+        <div class="section">
+            <div class="section-header">Meteo</div>
+            <div class="weather-section">
+                <div class="icon-box" id="wind-box">
+                    <h4 class="mini-title">Velocità del vento</h4>
+                    <i class="fas fa-wind icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="wind">0 km/h</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="wind-direction-box">
+                    <h4 class="mini-title">Direzione del vento</h4>
+                    <i class="fas fa-compass icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="wind-direction">Nord</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="temperature-box">
+                    <h4 class="mini-title">Temperatura</h4>
+                    <i class="fas fa-temperature-high icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="temperature">0°C</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Stazione -->
+        <div class="section">
+            <div class="section-header">Microcontrollore</div>
+            
+            <div class="station-section">
+                <div class="icon-box" id="water-box">
+                    <h4 class="mini-title">Contenuto Serbatoio</h4>
+                    <i class="fas fa-tint icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="water">0 L</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="battery-station-box">
+                    
+                    <h4 class="mini-title">Livello batteria</h4>
+                    <i class="fas fa-battery-full icon" id="battery-icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="battery-station">0%</p>
+                    </div>
+                </div>
+
+                <div class="icon-box" id="controller-temp-box">
+                    
+                    <h4 class="mini-title">Temperatura Controllore</h4>
+                    <i class="fas fa-microchip icon"></i>
+                    <div class="text-container">
+                        <p class="value" id="controller-temp">0°C</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funzione per generare valori casuali di tensione (V), corrente (I), pressione atmosferica e direzione del vento
+        function getRandomValue(min, max) {
+            return (Math.random() * (max - min) + min).toFixed(1);
+        }
+
+        function getRandomDirection() {
+            const directions = ['Nord', 'Sud', 'Est', 'Ovest'];
+            return directions[Math.floor(Math.random() * directions.length)];
+        }
+
+        function calculatePower(voltage, current) {
+            return (voltage * current).toFixed(2);
+        }
+
+        function getRandomControllerTemperature() {
+            return getRandomValue(20, 45) + "°C";
+        }
+
+        function updateValues() {
+            let voltage = getRandomValue(30, 60);
+            let current = getRandomValue(2, 10);
+            let windDirection = getRandomDirection();
+
+            let power = calculatePower(voltage, current) + " W";
+            let windSpeed = getRandomValue(0, 50) + " km/h";
+
+            let batteryLevel = getRandomValue(0, 100);
+            let batteryIcon = document.getElementById("battery-icon");
+            if (batteryLevel > 50) {
+                batteryIcon.className = "fas fa-battery-full icon";
+            } else if (batteryLevel > 20) {
+                batteryIcon.className = "fas fa-battery-half icon";
+            } else {
+                batteryIcon.className = "fas fa-battery-empty icon";
+            }
+
+            document.getElementById("solar").innerText = voltage + " V";
+            document.getElementById("current").innerText = current + " A";
+            document.getElementById("power").innerText = power;
+            document.getElementById("wind").innerText = windSpeed;
+            document.getElementById("temperature").innerText = getRandomValue(10, 35) + "°C";
+            document.getElementById("water").innerText = getRandomValue(0, 100) + " L";
+            document.getElementById("wind-direction").innerText = windDirection;
+            document.getElementById("controller-temp").innerText = getRandomControllerTemperature();
+            document.getElementById("battery-station").innerText = batteryLevel + "%";
+        }
+
+        setInterval(updateValues, 2000);
+    </script>
+</body>
+</html>
